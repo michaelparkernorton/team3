@@ -2,6 +2,10 @@ Team 3
 Head: Grant Willis
 ======
 Grant Willis
+<<<<<<< HEAD
 
+=======
+Michael Norton Dude
+>>>>>>> 05d082864b9af31458c4e1d138019525ac15076e
 
 https://trello.com/b/LpfCrGHs/team-3
