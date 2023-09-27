@@ -1,7 +1,7 @@
-import { setLocalStorage, getLocalStorage, getParam } from './utils.mjs';
+import { setLocalStorage, getLocalStorage, getParam } from './utils.mjs'; 
 
 
-function productDetails(productID){
+export function productDetails(productID){
 
 }
 
