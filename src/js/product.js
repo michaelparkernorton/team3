@@ -4,7 +4,7 @@ import { productDetails, renderProductDetails } from './productDetails.mjs';
 
 const productId = getParam('product');
 productDetails(productId);
-renderProductDetails();
+// renderProductDetails();
 
 
 function addProductToCart(product) {

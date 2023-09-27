@@ -14,10 +14,10 @@ export default async function productDetails(productId, selector) {
 //   return products.find((item) => item.Id === id);
 // }
 
-export function renderProductDetails(){
-  const productName = document.querySelector('productName');
-  productName.innerHTML = "Ajax";
-}
+// export function renderProductDetails(){
+//   const productName = document.querySelector('productName');
+//   productName.innerHTML = "Ajax";
+// }
 
 function addProductToCart(product) {
   // get existing cart data from local storage
