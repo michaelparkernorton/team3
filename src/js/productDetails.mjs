@@ -9,10 +9,10 @@ export default async function productDetails(productId, selector) {
   return findItem.find
 }
 
-export async function findProductById(id) {
-  const products = await getData();
-  return products.find((item) => item.Id === id);
-}
+// export async function findProductById(id) {
+//   const products = await getData();
+//   return products.find((item) => item.Id === id);
+// }
 
 export function renderProductDetails(){
   const productName = document.querySelector('productName');
