@@ -17,21 +17,17 @@ export function renderProductDetails() {
   document.querySelector('#productNameWithoutBrand').innerText = product.NameWithoutBrand;
   document.querySelector('#productImage').src = product.Image;
   document.querySelector('#productImage').alt = product.Name;
-  document.querySelector('#productFinalPrice').innerText = product.FinalPrice;
+  let percentageOff = (product.SuggestedRetailPrice-product.FinalPrice)/product.SuggestedRetailPrice * 100;
+  document.querySelector('#productDiscount').innerText = "-" + percentageOff.toFixed(0) + "%";
+  document.querySelector('#productFinalPrice').innerText = "$" + product.FinalPrice;
+  document.querySelector('#productSuggestedRetailPrice').innerText = "$" + product.SuggestedRetailPrice.toFixed(2);
   document.querySelector('#productColorName').innerText = product.Colors[0].ColorName;
   document.querySelector('#productDescriptionHtmlSimple').innerHTML = product.DescriptionHtmlSimple;
-  // console.log(product);
 }
 
 function addToCart() {
   const cartItems = getLocalStorage('so-cart') || [];
-  if (cartItems.length > 0) {
-    cartItems.push(product);// push new item into the array
+  cartItems.push(product);// push new item into the array
     // TODO: update existing cart item
-  } else {
-    cartItems.push(product);// push new item into the array
-  }
-
-    setLocalStorage('so-cart', cartItems);
- 
+  setLocalStorage('so-cart', cartItems);
 }

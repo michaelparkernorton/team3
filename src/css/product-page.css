@@ -1,0 +1,21 @@
+.product-card__retail-price {
+	text-decoration: line-through;
+	color: gray;
+}
+
+.product-card__discount {
+	color: red;
+	font-weight: 100;
+}
+
+.product-card__price {
+	font-weight: bold;
+}
+
+.product-card__discount, .product-card__retail-price, .product-card__price {
+	display: inline;
+}
+
+.product-card__discount, .product-card__price {
+	font-size: 26px;
+}
