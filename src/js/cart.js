@@ -19,7 +19,7 @@ function renderCartContents() {
     document.querySelector('.cart-total').innerHTML = 'Cart Total: $' + subTotal;
   } else {
   document.querySelector('.product-list').innerHTML = 'Your cart is empty.';
-  document.querySelector('.cart-total').innerHTML = '';
+  document.querySelector('.cart-total').style.display = 'none';
   }
 }
 
