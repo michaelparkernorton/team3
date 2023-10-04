@@ -12,7 +12,9 @@ function renderCartContents() {
   }
   //check if cartItems is an array before mapping
   if (cartItems.length > 0) {
-    const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+    // const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+    const htmlItems = cartItems.map(cartItemTemplate);
+
     document.querySelector('.product-list').innerHTML = htmlItems.join('');
     // Displays cart total
     // TODO I want this element centered, or at least shifted to the left a little. It may look better that way.
