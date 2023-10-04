@@ -1,4 +1,3 @@
 import productList from "./productList.mjs";
 
-productList();
-// console.log("IT'sworking!");
+productList(".product-list","tents");
