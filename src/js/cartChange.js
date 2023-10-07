@@ -1,6 +1,6 @@
 
 document.addEventListener('DOMContentLoaded', function() {
-    const cart = document.querySelector('.cart'); // Change the selector to match the class of your cart element
+    const cart = document.querySelector('.cart'); 
   
     function cartChange() {
       if (cart) {
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
   
-    // Assuming there's a button with id "addToCart" that triggers the cartChange function
+   
     const addToCartButton = document.getElementById('addToCart');
     if (addToCartButton) {
       addToCartButton.addEventListener('click', cartChange);
