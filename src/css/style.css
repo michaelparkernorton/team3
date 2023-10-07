@@ -105,10 +105,18 @@ button {
 
 .cart svg {
   width: 25px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 .cart:hover svg {
   fill: gray;
 }
+.cart.added {
+  background-color:#4CAF50 ; /* WILLIS -change color to green when item added to cart.*/
+  transform: scale(2.2); /* WILLIS - Icon gets slightly bigger. 
+  
+}
+
 
 /* End cart icon styles */
 
@@ -219,4 +227,5 @@ button {
 footer {
   font-size: var(--small-font);
   padding: 1em;
+}
 }

@@ -8,7 +8,7 @@ function renderCartContents() {
   // for loop just adds all Final Prices together in cartItems
   for (let i = 0; i < cartItems.length; i++) {
     const price = cartItems[i].FinalPrice;
-    subTotal+=price
+    subTotal += price
   }
   //check if cartItems is an array before mapping
   if (cartItems.length > 0) {
