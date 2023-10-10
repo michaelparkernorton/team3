@@ -220,3 +220,13 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+/* This is the styling for the badge on the cart icon */
+.superscript{
+  position: absolute;
+  width:2vh;
+  top: 1vh;
+  color: black;
+  background-color: rgb(255, 76, 76);
+  border-radius: 10px;
+}
