@@ -41,7 +41,6 @@ export function renderProductDetails() {
 function addToCart() {
   const cartItems = getLocalStorage('so-cart') || [];
   cartItems.push(product);// push new item into the array
-    // TODO: update existing cart item
   setLocalStorage('so-cart', cartItems);
   // cartChange();
   superscript();
