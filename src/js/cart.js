@@ -1,6 +1,6 @@
 import { getLocalStorage } from './utils.mjs';
-import { superscript } from './superscript.mjs';
-// import { } from '../../dist/images'; 
+// import { superscript } from './superscript.mjs';
+import { loadHeaderFooter } from './utils.mjs';
 
 function renderCartContents() {
   const cartItems = getLocalStorage('so-cart') || [];
@@ -49,4 +49,6 @@ function cartItemTemplate(item) {
 
 renderCartContents();
 
-superscript();
+loadHeaderFooter();
+
+// superscript();
