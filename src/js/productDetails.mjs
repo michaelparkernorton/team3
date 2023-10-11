@@ -44,7 +44,6 @@ function addToCart() {
     // TODO: update existing cart item
   setLocalStorage('so-cart', cartItems);
   // cartChange();
+  superscript();
 }
 // document.getElementById('addToCart').addEventListener('click', addToCart);
-
-superscript();
