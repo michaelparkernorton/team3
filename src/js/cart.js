@@ -1,12 +1,14 @@
 import { getLocalStorage } from './utils.mjs';
+import { superscript } from './superscript.mjs';
 // import { } from '../../dist/images'; 
 
 function renderCartContents() {
   const cartItems = getLocalStorage('so-cart') || [];
   // Set an item = to 0 so you can add to it
   let subTotal = 0;
+  let itemsInCart = cartItems.length;
   // for loop just adds all Final Prices together in cartItems
-  for (let i = 0; i < cartItems.length; i++) {
+  for (let i = 0; i < itemsInCart; i++) {
     const price = cartItems[i].FinalPrice;
     subTotal += price
   }
@@ -45,3 +47,5 @@ function cartItemTemplate(item) {
 }
 
 renderCartContents();
+
+superscript();

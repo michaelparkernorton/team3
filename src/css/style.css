@@ -90,7 +90,17 @@ button {
   border: 0;
   font-size: var(--large-font);
   cursor: pointer;
+  border-radius: 7px;
+  transition: .2s;
 }
+button#addToCart:hover{
+  background-color: rgb(67, 73, 22);
+  box-shadow: 7px 7px 10px black;
+}
+button#addToCart:active{
+  box-shadow:0 0 0 black;
+}
+
 .divider {
   border-bottom: 2px solid var(--primary-color);
 }
@@ -113,7 +123,7 @@ button {
 }
 .cart.added {
   background-color:#4CAF50 ; /* WILLIS -change color to green when item added to cart.*/
-  transform: scale(2.2); /* WILLIS - Icon gets slightly bigger. 
+  transform: scale(2.2); /* WILLIS - Icon gets slightly bigger.*/
   
 }
 
@@ -228,4 +238,12 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+.superscript{
+  position: absolute;
+  width: 2vh;
+  top: 1vh;
+  color: black;
+  background-color: rgb(255,76,76);
+  border-radius: 10px;
 }

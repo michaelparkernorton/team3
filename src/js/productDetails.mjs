@@ -1,5 +1,6 @@
 import { getLocalStorage, setLocalStorage} from './utils.mjs';
 import { findProductById } from './productData.mjs';
+import { superscript } from './superscript.mjs';
 
 let product = {};
 
@@ -45,3 +46,5 @@ function addToCart() {
   // cartChange();
 }
 // document.getElementById('addToCart').addEventListener('click', addToCart);
+
+superscript();
