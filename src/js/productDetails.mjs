@@ -46,3 +46,5 @@ function addToCart() {
   superscript();
 }
 // document.getElementById('addToCart').addEventListener('click', addToCart);
+
+superscript();
