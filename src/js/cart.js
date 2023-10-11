@@ -40,6 +40,7 @@ function cartItemTemplate(item) {
   </a>
   <p class='cart-card__color'>${item.Colors[0].ColorName}</p>
   <p class='cart-card__quantity'>qty: 1</p>
+  <span class='cart-card__remove' data-id=''>Delete</span>
   <p class='cart-card__price'>$${item.FinalPrice}</p>
 </li>`;
 
