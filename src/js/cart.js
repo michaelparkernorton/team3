@@ -1,5 +1,8 @@
 import { getLocalStorage } from './utils.mjs';
 import { superscript } from './superscript.mjs';
+import { loadHeaderFooter } from "./utils.mjs";
+
+loadHeaderFooter();
 // import { } from '../../dist/images'; 
 
 function renderCartContents() {
