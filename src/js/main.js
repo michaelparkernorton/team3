@@ -1,6 +1,7 @@
-import productList from './productList.mjs';
-import { superscript } from './superscript.mjs';
+import productList from "./productList.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
+// import { superscript } from "./superscript.mjs";
 
-productList('.product-list','tents');
-
-superscript();
+productList(".product-list", "tents");
+loadHeaderFooter();
+// superscript();
