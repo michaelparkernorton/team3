@@ -35,7 +35,29 @@
       </section>
       <section class="products">
         <h2>Top Products</h2>
-        <ul class="product-list">
+
+        <div class="search-wrapper">
+          <label for="search">Search Products</label>
+          <input type="search" id="search" data-search>
+        </div>
+
+        <ul class="product-list" data-product-cards-container>
+          <template data-product-template>
+            <li class="product-card">
+              <a href="" data-link>
+                <img
+                  src=""
+                  alt=""
+                  data-image
+                />
+                <h3 class="card__brand" data-brand></h3>
+                <h2 class="card__name" data-name>$</h2>
+                <p class="product-card__discount" data-discount></p>
+                <p class="product-card__price" data-price></p>
+                <p class="product-card__retail-price" data-retail-price></p>
+              </a>
+            </li>
+          </template>
         </ul>
       </section>
     </main>
