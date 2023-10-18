@@ -172,6 +172,10 @@ button#addToCart:active{
 .card__name {
   font-size: 1em;
 }
+
+.hide {
+  display: none;
+}
 /* End product list card */
 
 .product-detail {
