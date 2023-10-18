@@ -1,10 +1,19 @@
-import { loadHeaderFooter } from './utils.mjs';
+import { getParam, loadHeaderFooter } from './utils.mjs';
+import productList from './productList.mjs';
+import { doc } from 'prettier';
+
+const category = getParam('category');
+productList('.product-list', category);
+
 
 loadHeaderFooter();
 
 const productCardTemplate = document.querySelector("[data-product-template]");
 const productCardContainer = document.querySelector("[data-product-cards-container]");
 const searchInput = document.querySelector("[data-search]");
+const header = document.querySelector("[data-header]");
+
+header.textContent = "Top Products: " + category.toUpperCase().slice(0, 1) + category.slice(1);
 
 let products = [];
 
@@ -18,10 +27,16 @@ searchInput.addEventListener("input", (e) => {
   })
 })
 
-fetch("/json/tents.json")
+
+// const baseURL = import.meta.env.VITE_SERVER_URL;
+
+// fetch(baseURL + `products/search/tents`)
+// fetch(baseURL + `/products/search/${category}`)
+// let category = 'tents';
+fetch(`http://server-nodejs.cit.byui.edu:3000/products/search/${category}`)
   .then(res => res.json())
   .then(data => {
-      products = data.map(product => {
+      products = data.Result.map(product => {
           let percentageOff = ((product.SuggestedRetailPrice - product.FinalPrice) /
           product.SuggestedRetailPrice) * 100;
           const card = productCardTemplate.content.cloneNode(true).children[0];
@@ -37,9 +52,10 @@ fetch("/json/tents.json")
           discount.textContent = -percentageOff.toFixed(0) + "%";
           price.textContent = "$" + product.FinalPrice;
           retailPrice.textContent = "$" + product.SuggestedRetailPrice.toFixed(2);
-          image.src = product.Image.toString();
+          image.src = product.Images.PrimaryMedium.toString();
+          // console.log(product);
           image.alt = product.Name.toString();
-          link.href = "product_pages/index.html?product=" + product.Id;
+          link.href = "../product_pages/index.html?product=" + product.Id;
           if (product.Id === "989CG" || product.Id === "880RT") {
             card.classList.add("hide");
           }
