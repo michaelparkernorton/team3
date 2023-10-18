@@ -1,5 +1,5 @@
 import { getData } from "./productData.mjs";
-import { renderListWithTemplate } from "./utils.mjs";
+// import { renderListWithTemplate } from "./utils.mjs";
 
 
 
@@ -35,11 +35,11 @@ import { renderListWithTemplate } from "./utils.mjs";
 //   }
 // }
 
-// export default async function productList(selector, category) {
-//   // get the element we will insert the list into from the selector
-//   const el = document.querySelector(selector);
-//   // get the list of products
-//   const list = await getData(category);
-//   // render out the product list to the element
-//   renderListWithTemplate(productCardTemplate, el, list, "afterbegin");
-// }
+export default async function productList(selector, category) {
+  // get the element we will insert the list into from the selector
+  const el = document.querySelector(selector);
+  // get the list of products
+  const list = await getData(category);
+  // render out the product list to the element
+  renderListWithTemplate(productCardTemplate, el, list, "afterbegin");
+}

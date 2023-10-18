@@ -1,9 +1,7 @@
-// import productList from './productList.mjs';
 import { loadHeaderFooter } from './utils.mjs';
 // import { superscript } from "./superscript.mjs";
 
 loadHeaderFooter();
-// productList('.product-list', 'tents');
 
 // const productCardTemplate = document.querySelector("[data-product-template]");
 // const productCardContainer = document.querySelector("[data-product-cards-container]");
