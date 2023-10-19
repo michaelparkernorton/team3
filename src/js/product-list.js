@@ -28,12 +28,12 @@ searchInput.addEventListener("input", (e) => {
 })
 
 
-// const baseURL = import.meta.env.VITE_SERVER_URL;
+const baseURL = import.meta.env.VITE_SERVER_URL;
 
 // fetch(baseURL + `products/search/tents`)
 // fetch(baseURL + `/products/search/${category}`)
 // let category = 'tents';
-fetch(`http://server-nodejs.cit.byui.edu:3000/products/search/${category}`)
+fetch(baseURL + `products/search/${category}`)
   .then(res => res.json())
   .then(data => {
       products = data.Result.map(product => {
