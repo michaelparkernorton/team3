@@ -1,9 +1,5 @@
-import { getData } from "./productData.mjs";
+import { getData } from "/js/productData.mjs";
 // import { renderListWithTemplate } from "./utils.mjs";
-
-
-
-
 
 // function productCardTemplate(product) {
 //   if (
@@ -41,5 +37,5 @@ export default async function productList(selector, category) {
   // get the list of products
   const list = await getData(category);
   // render out the product list to the element
-  renderListWithTemplate(productCardTemplate, el, list, "afterbegin");
+  //   renderListWithTemplate(productCardTemplate, el, list, "afterbegin");
 }
