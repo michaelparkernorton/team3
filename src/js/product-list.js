@@ -19,6 +19,32 @@ header.textContent =
 
 let products = [];
 
+let sortValue = "";
+
+function removeChildren() {
+  var arr = [].slice.call(productCardContainer.children);
+  arr.forEach(child => {productCardContainer.removeChild(child)});
+}
+
+document.querySelector("[data-price-low-high]").addEventListener("click", function() {
+  sortValue = "price-low-high";
+  removeChildren();
+  loadProducts(sortValue);
+});
+
+document.querySelector("[data-price-high-low]").addEventListener("click", function() {
+  sortValue = "price-high-low";
+  removeChildren();
+  loadProducts(sortValue);
+});
+
+document.querySelector("[data-name]").addEventListener("click", function() {
+  sortValue = "name-lower-upper";
+  removeChildren();
+  loadProducts(sortValue);
+});
+
+
 searchInput.addEventListener("input", (e) => {
   const value = e.target.value.toLowerCase();
   products.forEach((product) => {
@@ -36,41 +62,60 @@ const baseURL = import.meta.env.VITE_SERVER_URL;
 // fetch(baseURL + `products/search/tents`)
 // fetch(baseURL + `/products/search/${category}`)
 // let category = 'tents';
-fetch(baseURL + `products/search/${category}`)
-  .then((res) => res.json())
-  .then((data) => {
-    products = data.Result.map((product) => {
-      let percentageOff =
-        ((product.SuggestedRetailPrice - product.FinalPrice) /
-          product.SuggestedRetailPrice) *
-        100;
-      const card = productCardTemplate.content.cloneNode(true).children[0];
-      const brand = card.querySelector("[data-brand]");
-      const name = card.querySelector("[data-name]");
-      const discount = card.querySelector("[data-discount]");
-      const price = card.querySelector("[data-price]");
-      const retailPrice = card.querySelector("[data-retail-price]");
-      const image = card.querySelector("[data-image]");
-      const link = card.querySelector("[data-link]");
-      brand.textContent = product.Brand.Name;
-      name.textContent = product.NameWithoutBrand;
-      discount.textContent = -percentageOff.toFixed(0) + "%";
-      price.textContent = "$" + product.FinalPrice;
-      retailPrice.textContent = "$" + product.SuggestedRetailPrice.toFixed(2);
-      image.src = product.Images.PrimaryMedium.toString();
-      // console.log(product);
-      image.alt = product.Name.toString();
-      link.href = "../product_pages/index.html?product=" + product.Id;
-      if (product.Id === "989CG" || product.Id === "880RT") {
-        card.classList.add("hide");
-      }
+function loadProducts(sortValue) {
 
-      productCardContainer.append(card);
-      return {
-        brand: product.Brand.Name,
-        name: product.NameWithoutBrand,
-        Id: product.Id,
-        element: card,
-      };
+  fetch(baseURL + `products/search/${category}`)
+    .then((res) => res.json())
+    .then((data) => {
+      let sortedProducts = data.Result;
+      if (sortValue === "name-lower-upper") {
+        sortedProducts = data.Result.sort(
+          (a, b) => (a.NameWithoutBrand.toLowerCase() > b.NameWithoutBrand.toLowerCase()) ? 1 : (a.NameWithoutBrand.toLowerCase() < b.NameWithoutBrand.toLowerCase()) ? -1 : 0);
+      } else if (sortValue === "name-upper-lower") {
+        sortedProducts = data.Result.sort(
+          (a, b) => (a.NameWithoutBrand.toLowerCase() < b.NameWithoutBrand.toLowerCase()) ? 1 : (a.NameWithoutBrand.toLowerCase() > b.NameWithoutBrand.toLowerCase()) ? -1 : 0);
+      } else if (sortValue === "price-low-high") {
+        sortedProducts = data.Result.sort(
+          (a, b) => (a.FinalPrice > b.FinalPrice) ? 1 : (a.FinalPrice < b.FinalPrice) ? -1 : 0);
+      } else if (sortValue === "price-high-low") {
+        sortedProducts = data.Result.sort(
+          (a, b) => (a.FinalPrice < b.FinalPrice) ? 1 : (a.FinalPrice > b.FinalPrice) ? -1 : 0);
+      }
+      // console.log(sortedProducts);
+        products = sortedProducts.map((product) => {
+        let percentageOff =
+          ((product.SuggestedRetailPrice - product.FinalPrice) /
+            product.SuggestedRetailPrice) *
+          100;
+        const card = productCardTemplate.content.cloneNode(true).children[0];
+        const brand = card.querySelector("[data-brand]");
+        const name = card.querySelector("[data-name]");
+        const discount = card.querySelector("[data-discount]");
+        const price = card.querySelector("[data-price]");
+        const retailPrice = card.querySelector("[data-retail-price]");
+        const image = card.querySelector("[data-image]");
+        const link = card.querySelector("[data-link]");
+        brand.textContent = product.Brand.Name;
+        name.textContent = product.NameWithoutBrand;
+        discount.textContent = -percentageOff.toFixed(0) + "%";
+        price.textContent = "$" + product.FinalPrice;
+        retailPrice.textContent = "$" + product.SuggestedRetailPrice.toFixed(2);
+        image.src = product.Images.PrimaryMedium.toString();
+        // console.log(product);
+        image.alt = product.Name.toString();
+        link.href = "../product_pages/index.html?product=" + product.Id;
+        if (product.Id === "989CG" || product.Id === "880RT") {
+          card.classList.add("hide");
+        }
+  
+        productCardContainer.append(card);
+        return {
+          brand: product.Brand.Name,
+          name: product.NameWithoutBrand,
+          Id: product.Id,
+          element: card,
+        };
+      });
     });
-  });
+  }
+  loadProducts();
