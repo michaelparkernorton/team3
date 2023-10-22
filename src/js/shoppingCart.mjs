@@ -1,9 +1,29 @@
-import { getLocalStorage, renderListWithTemplate } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, renderListWithTemplate, } from './utils.mjs';
 
 export default function shoppingCart() {
-  const cartItems = getLocalStorage("so-cart");
-  const outputEl = document.querySelector(".product-list");
+  const cartItems = getLocalStorage('so-cart');
+  const outputEl = document.querySelector('.product-list');
   renderListWithTemplate(cartItemTemplate, outputEl, cartItems);
+
+  // attaching eventlisterner to items in cart for item removal
+  outputEl.addEventListener('click', (event) => {
+    if(event.target.classList.contains('cart-card__remove')){
+      const itemId = event.target.dataset.id;
+      removeItem(itemId);
+    }
+  });
+} 
+
+function removeItem(itemId){
+  const cartItems = getLocalStorage('so-cart');
+  const itemIndex = cartItems.findIndex((item) => item.id === itemId);
+
+  if (itemIndex !== -1) {
+    cartItemTemplate.splice(itemIndex, 1);
+    setLocalStorage('so-cart', cartItems);
+    const outputEl = document.querySelector('product-list');
+    renderListWithTemplate(cartItemTemplate, outputEl, cartItems);
+  }
 }
 
 function cartItemTemplate(item) {
@@ -19,11 +39,21 @@ function cartItemTemplate(item) {
     </a>
     <p class='cart-card__color'>${item.Colors[0].ColorName}</p>
     <p class='cart-card__quantity'>qty: 1</p>
-    <span class='cart-card__remove' data-id=''>Delete</span>
+    <button type='button' class='cart-card__remove' data-id=''>Delete</button>
     <p class='cart-card__price'>$${item.FinalPrice}</p>
   </li>`;
 
-  return newItem;
+  // adding an event listener to the 'Delete' button
+// const deleteButton = document.createElement('button');
+// deleteButton.type = 'button';
+// deleteButton.classList.add('cart-card__remove');
+// deleteButton.textContent = 'Delete';
+
+// deleteButton.addEventListener('click', () => {
+//  newItem.remove();
+//  });
+//  newItem.appendChild(deleteButton);
+ return newItem;
 }
 
 // function renderCartContents() {
