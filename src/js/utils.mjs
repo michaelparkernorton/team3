@@ -15,11 +15,11 @@ export function setLocalStorage(key, data) {
 }
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
-  qs(selector).addEventListener("touchend", (event) => {
+  qs(selector).addEventListener('touchend', (event) => {
     event.preventDefault();
     callback();
   });
-  qs(selector).addEventListener("click", callback);
+  qs(selector).addEventListener('click', callback);
 }
 
 export function getParam(param) {
@@ -33,14 +33,14 @@ export function renderListWithTemplate(
   templateFn,
   parentElement,
   list,
-  position = "afterbegin",
+  position = 'afterbegin',
   clear = true
 ) {
   if (clear) {
-    parentElement.innerHTML = "";
+    parentElement.innerHTML = '';
   }
   const htmlStrings = list.map(templateFn);
-  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
 }
 
 export async function renderWithTemplate(
@@ -48,11 +48,11 @@ export async function renderWithTemplate(
   parentEl,
   data,
   callback,
-  position = "afterbegin",
+  position = 'afterbegin',
   clear = true
 ) {
   if (clear) {
-    parentEl.innerHTML = "";
+    parentEl.innerHTML = '';
   }
   const htmlText = await templateFn(data);
 
@@ -71,13 +71,28 @@ function loadTemplate(path) {
     }
   };
 }
-export async function loadHeaderFooter() {
-  const headerTemplateFn = loadTemplate("/partials/header.html");
-  const footerTemplateFn = loadTemplate("/partials/footer.html");
 
-  const headerEl = document.querySelector("#main-header");
-  const footerEl = document.querySelector("#main-footer");
+export async function loadHeaderFooter() {
+  const headerTemplateFn = loadTemplate('/partials/header.html');
+  const footerTemplateFn = loadTemplate('/partials/footer.html');
+
+  const headerEl = document.querySelector('#main-header');
+  const footerEl = document.querySelector('#main-footer');
   renderWithTemplate(headerTemplateFn, headerEl);
   renderWithTemplate(footerTemplateFn, footerEl);
-  
 }
+
+// export async function removeItem(productId){
+//   try {
+//   const cartIndex = shoppingCart.findIndex((item) => item.id === productId);
+//   if (cartIndex !== -1){
+//     cartIndex.splice(cartIndex, 1);
+//     return { success: true, message: "Item removed from the cart"};
+//   } else{
+//     return { success: false, message: "Item not found in the cart"};
+//   }
+//   }
+//   catch (error) {
+//     return {success: false, message: "An error occurred while attempting to remove item."}
+//   }
+// }
