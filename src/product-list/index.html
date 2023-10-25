@@ -6,7 +6,34 @@
     <title>Sleep Outside | Home</title>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/product-page.css">
+    <link rel="stylesheet" href="../css/product-list.css">
     <script src="../js/product-list.js" type="module"></script>
+    <script>
+      /* When the user clicks on the button, 
+      toggle between hiding and showing the dropdown content */
+        function myFunction() {
+          document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+          if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+              var openDropdown = dropdowns[i];
+              if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+              }
+            }
+          }
+        }
+
+        // $("#svg").click(function(){
+        //   $(".transform").toggleClass("transform-active");
+        // });
+        
+    </script>
 
   </head>
   <body>
@@ -21,7 +48,25 @@
           <input type="search" id="search" data-search>
         </div>
 
-        <ul class="product-list" data-product-cards-container>
+        <div class="dropdown" id="SM">
+          <button onclick="myFunction()" class="dropbtn SM-select-trigger"><span>Sort Results</span>
+            <!-- <svg id="svg" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" class="chevron-sort-icon active"> -->
+              <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                 <!-- <path 
+                  d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" 
+                  onclick="alert('You have clicked the circle.')"
+                  /> -->
+            <!-- </svg> -->
+          </button>
+          
+          <div id="myDropdown" class="dropdown-content">
+            <a href="#" data-price-low-high>Price - Low to High</a>
+            <a href="#" data-price-high-low>Price - High to Low</a>
+            <a href="#" data-name>Name</a>
+          </div>
+        </div>
+
+        <ul class="product-list" data-product-cards-container onload="sort()">
           <template data-product-template>
             <li class="product-card">
               <a href="" data-link>
