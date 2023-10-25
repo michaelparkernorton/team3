@@ -56,29 +56,29 @@ function cartItemTemplate(item) {
  return newItem;
 }
 
-// function renderCartContents() {
-//     const cartItems = getLocalStorage('so-cart') || [];
-//     // Set an item = to 0 so you can add to it
-//     let subTotal = 0;
-//     let itemsInCart = cartItems.length;
-//     // for loop just adds all Final Prices together in cartItems
-//     for (let i = 0; i < itemsInCart; i++) {
-//       const price = cartItems[i].FinalPrice;
-//       subTotal += price
-//     }
-//     //check if cartItems is an array before mapping
-//     if (cartItems.length > 0) {
-//       // const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-//       const htmlItems = cartItems.map(cartItemTemplate);
+function renderCartContents() {
+    const cartItems = getLocalStorage('so-cart') || [];
+    // Set an item = to 0 so you can add to it
+    let subTotal = 0;
+    let itemsInCart = cartItems.length;
+    // for loop just adds all Final Prices together in cartItems
+    for (let i = 0; i < itemsInCart; i++) {
+      const price = cartItems[i].FinalPrice;
+      subTotal += price
+    }
+    //check if cartItems is an array before mapping
+    if (cartItems.length > 0) {
+      // const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+      const htmlItems = cartItems.map(cartItemTemplate);
 
-//       document.querySelector('.product-list').innerHTML = htmlItems.join('');
-//       // Displays cart total
-//       // TODO I want this element centered, or at least shifted to the left a little. It may look better that way.
-//       document.querySelector('.cart-total').innerHTML = 'Cart Total: $' + subTotal;
-//     } else {
-//     document.querySelector('.product-list').innerHTML = 'Your cart is empty.';
-//     document.querySelector('.cart-total').style.display = 'none';
-//     }
-//   }
+      document.querySelector('.product-list').innerHTML = htmlItems.join('');
+      // Displays cart total
+      // TODO I want this element centered, or at least shifted to the left a little. It may look better that way.
+      document.querySelector('.cart-total').innerHTML = 'Cart Total: $' + subTotal;
+    } else {
+    document.querySelector('.product-list').innerHTML = 'Your cart is empty.';
+    document.querySelector('.cart-total').style.display = 'none';
+    }
+  }
 
-//   renderCartContents();
+  renderCartContents();

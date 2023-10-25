@@ -9,6 +9,8 @@
     <title>Sleep Outside | Checkout</title>
 
     <link rel="stylesheet" href="css/style.css" />
+
+    <script src="../js/checkout.js" type = 'module'></script>
   </head>
 
   <body>
@@ -18,7 +20,43 @@
     <main class="divider">
       <section class="products">
         <h2>Review & Place your Order</h2>
+        <form>
+          <fieldset name="userFields">
+          <legend>Shipping Information</legend>
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" name="fname"><br>
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" name="lname"><br>
+          <label for="street">Street</label>
+          <input type="text" id="street" name="street"><br>
+          <label for="city">City</label>
+          <input type="text" id="city" name="city"><br>
+          <label for="state">State</label>
+          <input type="text" id="state" name="state"><br>
+          <label for="zcode">Zip Code</label>
+          <input type="text" id="zcode" name="zcode"><br>
+        </fieldset>
+          <fieldset name="userPaymentFields">
+          <legend>Payment Information</legend>
+          <label for="cNumber">Card Number</label>
+          <input type="number" id="cNumber" name="cNumber"><br>
+          <label for="exp">Expiration </label>
+          <input type="date" id="exp" name="exp"><br>
+          <label for="sCode">Security Code</label>
+          <input type="number" id="sCode" name="sCode"><br>
+        </fieldset>
+          <fieldset class="checkoutSummary">
+          <legend>Order Summary</legend>
+          <label for="itemTotal">Item Subtotal('')</label><br>
+          <p id = 'subTotal'></p>
+          <label for="shipEst">Shipping Estimate </label><br>
+          <label for="tax">Tax</label><br>
+          <label id="" for="orderTotal">Order Total</label>
+        </fieldset>
+        <input type="submit" value="Checkout" name="Checkout"/>
+        </form> 
       </section>
+     
     </main>
 
     <footer id="main-footer"></footer>
