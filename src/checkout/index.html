@@ -9,6 +9,8 @@
     <title>Sleep Outside | Checkout</title>
 
     <link rel="stylesheet" href="css/style.css" />
+
+    <script src="../js/checkout.js" type = 'module'></script>
   </head>
 
   <body>
@@ -43,9 +45,10 @@
           <label for="sCode">Security Code</label>
           <input type="number" id="sCode" name="sCode"><br>
         </fieldset>
-          <fieldset name="userPaymentFields">
+          <fieldset class="checkoutSummary">
           <legend>Order Summary</legend>
           <label for="itemTotal">Item Subtotal('')</label><br>
+          <p id = 'subTotal'></p>
           <label for="shipEst">Shipping Estimate </label><br>
           <label for="tax">Tax</label><br>
           <label id="" for="orderTotal">Order Total</label>
