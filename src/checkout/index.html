@@ -47,13 +47,16 @@
           <label for="sCode">Security Code</label>
           <input type="number" id="sCode" name="sCode"><br>
         </fieldset>
-          <fieldset class="checkoutSummary">
+        <fieldset class="checkoutSummary">
           <legend>Order Summary</legend>
-          <label for="itemTotal">Item Subtotal('')</label><br>
-          <p id = 'subTotal'></p>
+          <label for="itemTotal">Item Subtotal ('<span id="num-items"></span>')</label><br>
+          <p id='subTotal'></p>
           <label for="shipEst">Shipping Estimate </label><br>
+          <p id='shipping'></p>
           <label for="tax">Tax</label><br>
-          <label id="" for="orderTotal">Order Total</label>
+          <p id='tax'></p>
+          <label for="orderTotal">Order Total</label>
+          <p id='orderTotal'></p>
         </fieldset>
         <input type="submit" value="Checkout" name="Checkout"/>
         </form> 
