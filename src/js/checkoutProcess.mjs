@@ -23,11 +23,14 @@ const checkoutProcess = {
         summaryEl.innerText = '$' + this.itemTotal;
         console.log(this.itemTotal);
     },
-    // calculateOrderTotal(){
-    // this.shipping = 10 + (2 * itemCount);
-    //     this.tax = subTotal * .06;
-    //     this.checkoutTotal = (subTotal + this.shipping + this.tax)
-    // }
+    calculateOrderTotal(){
+        this.shipping = 10 + (2 * itemCount);
+        this.tax = subTotal * .06;
+        this.checkoutTotal = (subTotal + this.shipping + this.tax)
+    }
+    displayOrderTotals(){
+        // once the totals are all calculated display them in the order summary page
+    }
 }
 
 export default checkoutProcess;
