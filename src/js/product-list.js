@@ -7,6 +7,10 @@ productList(".product-list", category);
 
 loadHeaderFooter();
 
+const breadcrumbsCategoryName = document.querySelector("#category-name");
+let breadcrumbsNumberOfItems = document.querySelector("#number-of-items");
+breadcrumbsCategoryName.innerText = category;
+
 const productCardTemplate = document.querySelector("[data-product-template]");
 const productCardContainer = document.querySelector(
   "[data-product-cards-container]"
@@ -63,7 +67,7 @@ const baseURL = import.meta.env.VITE_SERVER_URL;
 // fetch(baseURL + `/products/search/${category}`)
 // let category = 'tents';
 function loadProducts(sortValue) {
-
+  let numberOfItems = 0;
   fetch(baseURL + `products/search/${category}`)
     .then((res) => res.json())
     .then((data) => {
@@ -81,12 +85,14 @@ function loadProducts(sortValue) {
         sortedProducts = data.Result.sort(
           (a, b) => (a.FinalPrice < b.FinalPrice) ? 1 : (a.FinalPrice > b.FinalPrice) ? -1 : 0);
       }
-      // console.log(sortedProducts);
         products = sortedProducts.map((product) => {
         let percentageOff =
           ((product.SuggestedRetailPrice - product.FinalPrice) /
             product.SuggestedRetailPrice) *
           100;
+        numberOfItems++;
+        breadcrumbsNumberOfItems.innerText = numberOfItems;
+        console.log(numberOfItems);
         const card = productCardTemplate.content.cloneNode(true).children[0];
         const brand = card.querySelector("[data-brand]");
         const name = card.querySelector("[data-name]");
@@ -101,7 +107,6 @@ function loadProducts(sortValue) {
         price.textContent = "$" + product.FinalPrice;
         retailPrice.textContent = "$" + product.SuggestedRetailPrice.toFixed(2);
         image.src = product.Images.PrimaryMedium.toString();
-        // console.log(product);
         image.alt = product.Name.toString();
         link.href = "../product_pages/index.html?product=" + product.Id;
         if (product.Id === "989CG" || product.Id === "880RT") {

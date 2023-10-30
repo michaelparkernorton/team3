@@ -1,8 +1,11 @@
 import { getLocalStorage, setLocalStorage} from './utils.mjs';
 import { findProductById } from './externalServices.mjs';
 import { superscript } from './superscript.mjs';
+import { doc } from 'prettier';
 
 let product = {};
+
+// document.querySelector("#link")
 
 export default async function productDetails(productId) {
   // use findProductById to get the details for the current product. findProductById will return a promise! use await or .then() to process it
@@ -14,6 +17,8 @@ export default async function productDetails(productId) {
 }
 
 export function renderProductDetails() {
+  document.querySelector('#category-name').innerHTML = product.Category;
+  document.querySelector('#link').href = "../product-list/index.html?category=" + product.Category;
   document.querySelector('#productName').innerText = product.Brand.Name;
   document.querySelector('#productNameWithoutBrand').innerText = product.NameWithoutBrand;
   document.querySelector('#productImage').src = product.Images.PrimaryLarge;
