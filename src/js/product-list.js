@@ -95,12 +95,14 @@ function loadProducts(sortValue) {
         console.log(numberOfItems);
         const card = productCardTemplate.content.cloneNode(true).children[0];
         const brand = card.querySelector("[data-brand]");
+        console.log(brand);
         const name = card.querySelector("[data-name]");
         const discount = card.querySelector("[data-discount]");
         const price = card.querySelector("[data-price]");
         const retailPrice = card.querySelector("[data-retail-price]");
         const image = card.querySelector("[data-image]");
         const link = card.querySelector("[data-link]");
+        console.log(product.Colors)
         brand.textContent = product.Brand.Name;
         name.textContent = product.NameWithoutBrand;
         discount.textContent = -percentageOff.toFixed(0) + "%";
