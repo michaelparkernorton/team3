@@ -43,13 +43,14 @@ export function renderProductDetails() {
     "$" + product.SuggestedRetailPrice.toFixed(2);
 
     console.log(product.Colors);
-    const colors = product.Colors.map((color) => [color.ColorName, color.ColorChipImageSrc]);
+    const colors = product.Colors.map((color) => color.ColorChipImageSrc);
     colors.forEach((color, index) => {
       // console.log(color);
       // console.log(index);
       const card = colorTemplate.content.cloneNode(true).children[0];
-      // console.log(card);
-      card.innerText = color[0];
+      console.log(card);
+      card.src = color;
+      // card.innerText = color[0];
       card.id = index;
       // console.log(card.id);
       card.addEventListener("click", function(){select(card)});

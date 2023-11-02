@@ -214,7 +214,7 @@ button#addToCart:active{
   margin: auto;
 }
 
-.product-detail img {
+#productImage {
   width: 100%;
 }
 
