@@ -32,3 +32,9 @@
 	margin: 5px;
 	border-radius: 5px;
 }
+
+.selected {
+	border: solid 2px;
+	background-color: black;
+	color: white;
+}

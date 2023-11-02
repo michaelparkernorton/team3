@@ -20,9 +20,9 @@ export default async function productDetails(productId) {
   document.getElementById("addToCart").addEventListener("click", addToCart);
 }
 
-let colors = [];
 
 export function renderProductDetails() {
+
   document.querySelector("#category-name").innerHTML = product.Category;
   document.querySelector("#link").href =
     "../product-list/index.html?category=" + product.Category;
@@ -42,21 +42,45 @@ export function renderProductDetails() {
   document.querySelector("#productSuggestedRetailPrice").innerText =
     "$" + product.SuggestedRetailPrice.toFixed(2);
 
-    // console.log(product.Colors);
-    const colors = product.Colors.map((color) => color.ColorName);
-    colors.forEach(color => {
-      console.log(color);
+    
+    const colors = product.Colors.map((color) => [color.ColorName, color.ColorChipImageSrc]);
+    colors.forEach((color, index) => {
+      // console.log(color);
+      // console.log(index);
       const card = colorTemplate.content.cloneNode(true).children[0];
-      card.innerText = color;
+      // console.log(card);
+      card.innerText = color[0];
+      card.id = index;
+      // console.log(card.id);
+      card.addEventListener("click", function(){select(card)});
+      
+      if (index == 0) {
+        card.classList.add("selected");
+      }
       colorsContainer.append(card);
+      // console.log(card);
+            
     });
 
-
-
-  // document.querySelector("#productColorName").innerText =
-  //   product.Colors[0].ColorName;
   document.querySelector("#productDescriptionHtmlSimple").innerHTML =
     product.DescriptionHtmlSimple;
+
+}
+
+
+
+function select(element) {
+  let allcards = document.querySelectorAll(".product__color");
+  allcards.forEach(element => {
+    console.log(element);
+    element.classList.remove("selected");
+  });
+  element.classList.add("selected");
+  console.log(product.Colors[element.id]);
+  console.log(element.id);
+  // console.log(allcards);
+  // allcards.classList.toggle("selected");
+  // console.log(element);
 }
 
 // const cart = document.getElementById('cart');
