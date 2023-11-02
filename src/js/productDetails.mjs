@@ -55,9 +55,9 @@ export function renderProductDetails() {
       // console.log(card.id);
       card.addEventListener("click", function(){select(card)});
       
-      if (index == 0) {
-        card.classList.add("selected");
-      }
+      // if (index == 0) {
+      //   card.classList.add("selected");
+      // }
       colorsContainer.append(card);
       // console.log(card);
             
@@ -71,12 +71,12 @@ export function renderProductDetails() {
 
 
 function select(element) {
-  let allcards = document.querySelectorAll(".product__color");
-  allcards.forEach(element => {
-    console.log(element);
-    element.classList.remove("selected");
-  });
-  element.classList.add("selected");
+  // let allcards = document.querySelectorAll(".product__color");
+  // allcards.forEach(element => {
+  //   console.log(element);
+  //   element.classList.remove("selected");
+  // });
+  // element.classList.add("selected");
   let pictureSwitch = product.Colors[element.id].ColorPreviewImageSrc
   document.querySelector("#productImage").src = pictureSwitch;
   console.log(element.id);
