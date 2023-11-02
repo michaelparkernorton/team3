@@ -42,7 +42,7 @@ export function renderProductDetails() {
   document.querySelector("#productSuggestedRetailPrice").innerText =
     "$" + product.SuggestedRetailPrice.toFixed(2);
 
-    
+    console.log(product.Colors);
     const colors = product.Colors.map((color) => [color.ColorName, color.ColorChipImageSrc]);
     colors.forEach((color, index) => {
       // console.log(color);
@@ -76,7 +76,8 @@ function select(element) {
     element.classList.remove("selected");
   });
   element.classList.add("selected");
-  console.log(product.Colors[element.id]);
+  let pictureSwitch = product.Colors[element.id].ColorPreviewImageSrc
+  document.querySelector("#productImage").src = pictureSwitch;
   console.log(element.id);
   // console.log(allcards);
   // allcards.classList.toggle("selected");
