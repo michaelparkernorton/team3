@@ -14,19 +14,12 @@ export default async function productDetails(productId) {
   // once we have the product details we can render out the HTML
   renderProductDetails();
   // add a listener to Add to Cart button
-  // SelectedColor = product.Colors[0];
-  Object.defineProperty( product.Colors[0], 'Selected', {
-    value: true,
-    writable: true,
-  });
+  product.Colors[0].Selected = true;
   for (let index = 1; index < product.Colors.length; index++) {
     const element = product.Colors[index];
-    Object.defineProperty( product.Colors[index], 'Selected', {
-      value: false,
-      writable: true,
-    });
+    product.Colors[index].Selected = false;
   }
-  // console.log(SelectedColor);
+  // console.log(product.Colors);
   document.getElementById("addToCart").addEventListener("click", addToCart);
 }
 
@@ -77,38 +70,17 @@ export function renderProductDetails() {
 }
 
 function select(element) {
-  // let allcards = document.querySelectorAll(".product__color");
-  // allcards.forEach(element => {
-  //   console.log(element);
-  //   element.classList.remove("Selected");
-  // });
-  // element.classList.add("Selected");
+
   let pictureSwitch = product.Colors[element.id].ColorPreviewImageSrc;
   document.querySelector("#productImage").src = pictureSwitch;
-  // SelectedColor = product.Colors[element.id];
-  product.Colors.forEach(element => {
+  product.Colors.forEach((element) => {
     element.Selected = false;
   });
   product.Colors[element.id].Selected = true;
-  product.Colors.forEach(element => {
-    // console.log(element.Selected);
+  product.Colors.forEach((element) => {
   });
-  
-  // console.log(element.id);
-  // console.log(allcards);
-  // allcards.classList.toggle("Selected");
-  // console.log(element);
 }
 
-// const cart = document.getElementById('cart');
-
-// function cartChange(){
-//   cart.classList.add('added');
-
-//   setTimeout(() => {
-//     cart.classList.remove('added');
-//   }, 5000);
-// }
 
 function addToCart() {
   const cartItems = getLocalStorage("so-cart") || [];
