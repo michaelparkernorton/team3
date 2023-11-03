@@ -14,8 +14,19 @@ export default async function productDetails(productId) {
   // once we have the product details we can render out the HTML
   renderProductDetails();
   // add a listener to Add to Cart button
-  let selectedColor = product.Colors[0];
-  console.log(selectedColor);
+  // SelectedColor = product.Colors[0];
+  Object.defineProperty( product.Colors[0], 'Selected', {
+    value: true,
+    writable: true,
+  });
+  for (let index = 1; index < product.Colors.length; index++) {
+    const element = product.Colors[index];
+    Object.defineProperty( product.Colors[index], 'Selected', {
+      value: false,
+      writable: true,
+    });
+  }
+  // console.log(SelectedColor);
   document.getElementById("addToCart").addEventListener("click", addToCart);
 }
 
@@ -55,7 +66,7 @@ export function renderProductDetails() {
     });
 
     // if (index == 0) {
-    //   card.classList.add("selected");
+    //   card.classList.add("Selected");
     // }
     colorsContainer.append(card);
     // console.log(card);
@@ -69,14 +80,23 @@ function select(element) {
   // let allcards = document.querySelectorAll(".product__color");
   // allcards.forEach(element => {
   //   console.log(element);
-  //   element.classList.remove("selected");
+  //   element.classList.remove("Selected");
   // });
-  // element.classList.add("selected");
+  // element.classList.add("Selected");
   let pictureSwitch = product.Colors[element.id].ColorPreviewImageSrc;
   document.querySelector("#productImage").src = pictureSwitch;
+  // SelectedColor = product.Colors[element.id];
+  product.Colors.forEach(element => {
+    element.Selected = false;
+  });
+  product.Colors[element.id].Selected = true;
+  product.Colors.forEach(element => {
+    // console.log(element.Selected);
+  });
+  
   // console.log(element.id);
   // console.log(allcards);
-  // allcards.classList.toggle("selected");
+  // allcards.classList.toggle("Selected");
   // console.log(element);
 }
 
@@ -92,7 +112,9 @@ function select(element) {
 
 function addToCart() {
   const cartItems = getLocalStorage("so-cart") || [];
-  cartItems.push(product); // push new item into the array
+  console.log(product);
+  cartItems.push(product);
+  // console.log(cartItems); // push new item into the array
   setLocalStorage("so-cart", cartItems);
   // cartChange();
   superscript();
