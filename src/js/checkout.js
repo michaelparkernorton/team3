@@ -19,12 +19,10 @@ document.forms["checkout"].addEventListener("submit", (e) => {
   // e.target contains our form
   checkoutProcess.checkout(e.target);
 });
-// document.querySelector('#checkoutSubmit')
-//   .addEventListener('submit', (e) => {
-//     e.preventDefault();
-//     var myForm = document.forms[0];
-//     var chk_status = myForm.checkValidity();
-//     myForm.reportValidity();
-//     if(chk_status)
-//       checkoutProcess.checkout();
-//   });
+document.querySelector("#checkoutSubmit").addEventListener("submit", (e) => {
+  e.preventDefault();
+  var myForm = document.forms[0];
+  var chk_status = myForm.checkValidity();
+  myForm.reportValidity();
+  if (chk_status) checkoutProcess.checkout();
+});
