@@ -1,0 +1,17 @@
+h2 {
+    margin-left: 20px;
+}
+
+fieldset {
+    width: 500px;
+    margin: auto;
+}
+
+.checkout-form label {
+    display: block;
+}
+
+.checkout-form input {
+    width: 100%;
+    height: 30px;
+}
