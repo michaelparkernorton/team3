@@ -1,5 +1,5 @@
-import { getLocalStorage, setLocalStorage, alertMessage, removeAllAlerts } from "./utils.mjs";
-import { checkout } from "./externalServices.mjs";
+import { getLocalStorage, setLocalStorage, alertMessage, removeAllAlerts } from "../utils.mjs";
+import { checkout } from "../externalServices.mjs";
 
 // takes a form element and returns an object where the key is the "name" of the form input.
 function formDataToJSON(formElement) {
