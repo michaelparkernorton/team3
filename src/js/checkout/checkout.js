@@ -6,7 +6,7 @@ loadHeaderFooter();
 checkoutProcess.init("so-cart", ".checkout-summary");
 
 document
-  .querySelector("#zcode")
+  .querySelector("#zip")
   .addEventListener(
     "blur",
     checkoutProcess.calculateOrderTotal.bind(checkoutProcess)
