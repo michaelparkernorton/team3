@@ -1,5 +1,10 @@
-import { getLocalStorage, setLocalStorage, alertMessage, removeAllAlerts } from "../utils.mjs";
-import { checkout } from "../externalServices.mjs";
+import {
+  getLocalStorage,
+  setLocalStorage,
+  alertMessage,
+  removeAllAlerts,
+} from "../js/utils.mjs";
+import { checkout } from "../js/externalServices.mjs";
 
 // takes a form element and returns an object where the key is the "name" of the form input.
 function formDataToJSON(formElement) {
@@ -81,7 +86,7 @@ const checkoutProcess = {
     // call the checkout method in our externalServices module and send it our data object.
     try {
       const res = await checkout(json);
-      console.log(res)
+      console.log(res);
       setLocalStorage("so-cart", []);
       location.assign("/checkout/success.html");
     } catch (err) {
