@@ -2,16 +2,16 @@ import {
   getLocalStorage,
   setLocalStorage,
   renderListWithTemplate,
-} from "./utils.mjs";
+} from './utils.mjs';
 
 export default function shoppingCart() {
-  const cartItems = getLocalStorage("so-cart");
-  const outputEl = document.querySelector(".product-list");
+  const cartItems = getLocalStorage('so-cart');
+  const outputEl = document.querySelector('.product-list');
   // renderListWithTemplate(cartItemTemplate, outputEl, cartItems);
 
   // attaching eventlisterner to items in cart for item removal
-  outputEl.addEventListener("click", (event) => {
-    if (event.target.classList.contains("cart-card__remove")) {
+  outputEl.addEventListener('click', (event) => {
+    if (event.target.classList.contains('cart-card__remove')) {
       const itemId = event.target.dataset.id;
       removeItem(itemId);
     }
@@ -19,19 +19,19 @@ export default function shoppingCart() {
 }
 
 function removeItem(itemId) {
-  const cartItems = getLocalStorage("so-cart");
+  const cartItems = getLocalStorage('so-cart');
   const itemIndex = cartItems.findIndex((item) => item.id === itemId);
 
   if (itemIndex !== -1) {
     cartItemTemplate.splice(itemIndex, 1);
-    setLocalStorage("so-cart", cartItems);
-    const outputEl = document.querySelector("product-list");
+    setLocalStorage('so-cart', cartItems);
+    const outputEl = document.querySelector('product-list');
     renderListWithTemplate(cartItemTemplate, outputEl, cartItems);
   }
 }
 
 function cartItemTemplate(item) {
-  let colorName = "";
+  let colorName = '';
   console.log(item);
   item.Colors.forEach((element) => {
     if (element.Selected) {
@@ -69,7 +69,7 @@ function cartItemTemplate(item) {
 }
 
 function renderCartContents() {
-  const cartItems = getLocalStorage("so-cart") || [];
+  const cartItems = getLocalStorage('so-cart') || [];
   // Set an item = to 0 so you can add to it
   let subTotal = 0;
   let itemsInCart = cartItems.length;
@@ -83,14 +83,14 @@ function renderCartContents() {
     // const htmlItems = cartItems.map((item) => cartItemTemplate(item));
     const htmlItems = cartItems.map(cartItemTemplate);
 
-    document.querySelector(".product-list").innerHTML = htmlItems.join("");
+    document.querySelector('.product-list').innerHTML = htmlItems.join('');
     // Displays cart total
     // TODO I want this element centered, or at least shifted to the left a little. It may look better that way.
-    document.querySelector(".cart-total").innerHTML =
-      "Cart Total: $" + subTotal.toFixed(2);
+    document.querySelector('.cart-total').innerHTML =
+      'Cart Total: $' + subTotal.toFixed(2);
   } else {
-    document.querySelector(".product-list").innerHTML = "Your cart is empty.";
-    document.querySelector(".cart-total").style.display = "none";
+    document.querySelector('.product-list').innerHTML = 'Your cart is empty.';
+    document.querySelector('.cart-total').style.display = 'none';
   }
 }
 

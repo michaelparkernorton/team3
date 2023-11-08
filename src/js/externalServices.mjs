@@ -1,4 +1,4 @@
-const baseURL = import.meta.env.VITE_SERVER_URL;
+   const baseURL = import.meta.env.VITE_SERVER_URL;
 async function convertToJson(res) {
   const data = await res.json();
   if (res.ok) {
@@ -28,5 +28,18 @@ export async function checkout(payload) {
     },
     body: JSON.stringify(payload)
   };
-  return await fetch(baseURL + "checkout/", options).then(convertToJson);
+  return await fetch(baseURL + 'checkout/', options).then(convertToJson);
 }
+
+export async function loginRequest(user){
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(user),
+  };
+  const response = await fetch(baseURL + 'login', options).then(convertToJson);
+  return response.accessToken;
+  
+};
