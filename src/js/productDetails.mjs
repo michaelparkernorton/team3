@@ -6,7 +6,9 @@ import { doc } from "prettier";
 let product = {};
 const colorTemplate = document.querySelector("[color-template]");
 const colorsContainer = document.querySelector("[colors-container]");
-// document.querySelector("#link")
+const buttons = document.querySelectorAll("[data-carousel-button]");
+let displayImage = document.querySelector("#productImage");
+let images = [];
 
 export default async function productDetails(productId) {
   // use findProductById to get the details for the current product. findProductById will return a promise! use await or .then() to process it
@@ -19,7 +21,6 @@ export default async function productDetails(productId) {
     const element = product.Colors[index];
     product.Colors[index].Selected = false;
   }
-  // console.log(product.Colors);
   document.getElementById("addToCart").addEventListener("click", addToCart);
 }
 
@@ -30,7 +31,31 @@ export function renderProductDetails() {
   document.querySelector("#productName").innerText = product.Brand.Name;
   document.querySelector("#productNameWithoutBrand").innerText =
     product.NameWithoutBrand;
-  document.querySelector("#productImage").src = product.Images.PrimaryLarge;
+
+  // ------------ Display Image and Carousel -----------------------------------
+  images.push(product.Images.PrimaryLarge)
+  displayImage.src = images[0];
+
+  if (product.Images.ExtraImages != null){
+    buttons.forEach(button => {
+      button.style.display = "inline";
+    });
+    product.Images.ExtraImages.forEach(image => {
+      images.push(image.Src);
+    });
+  }
+
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      const offset = button.dataset.carouselButton === "next" ? 1 : -1;
+      let newIndex = images.indexOf(displayImage.src) + offset;
+      if (newIndex < 0) newIndex = images.length - 1;
+      if (newIndex >= images.length) newIndex = 0;
+      displayImage.src = images[newIndex];
+    })
+  })
+  // ------------ Display Image and Carousel -----------------------------------
+  
   document.querySelector("#productImage").alt = product.Name;
   let percentageOff =
     ((product.SuggestedRetailPrice - product.FinalPrice) /
@@ -42,53 +67,33 @@ export function renderProductDetails() {
     "$" + product.FinalPrice;
   document.querySelector("#productSuggestedRetailPrice").innerText =
     "$" + product.SuggestedRetailPrice.toFixed(2);
-
-  // console.log(product.Colors);
   const colors = product.Colors.map((color) => color.ColorChipImageSrc);
   colors.forEach((color, index) => {
-    // console.log(color);
-    // console.log(index);
     const card = colorTemplate.content.cloneNode(true).children[0];
     card.src = color;
-    // console.log(card.src);
-    // card.innerText = color[0];
     card.id = index;
-    // console.log(card.id);
     card.addEventListener("click", function () {
       select(card);
     });
-
-    // if (index == 0) {
-    //   card.classList.add("Selected");
-    // }
     colorsContainer.append(card);
-    // console.log(card);
   });
-
   document.querySelector("#productDescriptionHtmlSimple").innerHTML =
     product.DescriptionHtmlSimple;
 }
 
 function select(element) {
-
   let pictureSwitch = product.Colors[element.id].ColorPreviewImageSrc;
   document.querySelector("#productImage").src = pictureSwitch;
   product.Colors.forEach((element) => {
     element.Selected = false;
   });
   product.Colors[element.id].Selected = true;
-  product.Colors.forEach((element) => {
-  });
 }
-
 
 function addToCart() {
   const cartItems = getLocalStorage("so-cart") || [];
-  console.log(product);
   cartItems.push(product);
-  // console.log(cartItems); // push new item into the array
   setLocalStorage("so-cart", cartItems);
-  // cartChange();
   superscript();
 }
-// document.getElementById('addToCart').addEventListener('click', addToCart);
+

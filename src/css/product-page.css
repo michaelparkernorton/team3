@@ -43,3 +43,12 @@
 	width: 50px;
 	height: 50px;
 }
+
+.carousel-button {
+	display: none;
+}
+
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
