@@ -127,7 +127,6 @@ function loadProducts(sortValue) {
         if (product.Id === "989CG" || product.Id === "880RT") {
           card.classList.add("hide");
         }
-        console.log(product);
 
         productCardContainer.append(card);
         return {
