@@ -1,5 +1,5 @@
 export function Func() {
-  let urlOfJsonFile = "../public/json/alerts.json";
+  let urlOfJsonFile = "../json/alerts.json";
   fetch(urlOfJsonFile)
     .then((res) => {
       return res.json();

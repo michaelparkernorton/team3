@@ -1,5 +1,5 @@
-import { Func } from "./alert";
-import { loadHeaderFooter } from "./utils.mjs";
+import { Func } from "./mjs/alert.mjs";
+import { loadHeaderFooter } from "./mjs/utils.mjs";
 
 // import { superscript } from "./superscript.mjs";
 

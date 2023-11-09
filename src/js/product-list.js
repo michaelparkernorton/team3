@@ -1,5 +1,5 @@
-import { getParam, loadHeaderFooter } from "./utils.mjs";
-import productList from "./productList.mjs";
+import { getParam, loadHeaderFooter } from "./mjs/utils.mjs";
+import productList from "./mjs/productList.mjs";
 import { doc } from "prettier";
 
 const category = getParam("category");
