@@ -1,0 +1,46 @@
+
+form {
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 50%;
+    /* background-color: blue; */
+    padding: 20px 0;
+}
+.inputs {
+    padding: 20px;
+    /* background-color: green; */
+}
+
+.input {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-row-gap: 10px;
+}
+
+label {
+    text-align: right;
+    padding-right: 5px;
+}
+
+[for~="email"] {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+}
+
+[for~="password"] {
+    grid-column: 1 / span 1;
+    grid-row: 2 / span 1;
+}
+
+#email {
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+}
+
+#password {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+}
+

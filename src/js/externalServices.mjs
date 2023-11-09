@@ -1,5 +1,5 @@
   //  import jwt_decode from 'jwt-decode';
-import { getLocalStorage } from './utils.mjs';
+import { getLocalStorage } from '';
    const baseURL = import.meta.env.VITE_SERVER_URL;
 async function convertToJson(res) {
   const data = await res.json();
