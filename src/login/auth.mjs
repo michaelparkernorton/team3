@@ -10,7 +10,7 @@ export async function login(creds, redirect = '/') {
         setLocalStorage(tokenKey, token);
         window.location = redirect;
     } catch (err) {
-        alertMessage(err.message.message);
+        alertMessage(err.message);
     }
 }
 
