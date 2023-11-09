@@ -1,0 +1,12 @@
+[
+  {
+    "message": "Limited time offer - 20% off on selected items!",
+    "color": "#FFA500",
+    "background": "#00008B"
+  },
+  {
+    "message": "New arrivals - Check out our latest products!",
+    "color": "#32CD32",
+    "background": "#808080"
+  }
+]

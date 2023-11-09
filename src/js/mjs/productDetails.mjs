@@ -33,29 +33,29 @@ export function renderProductDetails() {
     product.NameWithoutBrand;
 
   // ------------ Display Image and Carousel -----------------------------------
-  images.push(product.Images.PrimaryLarge)
+  images.push(product.Images.PrimaryLarge);
   displayImage.src = images[0];
 
-  if (product.Images.ExtraImages != null){
-    buttons.forEach(button => {
+  if (product.Images.ExtraImages != null) {
+    buttons.forEach((button) => {
       button.style.display = "inline";
     });
-    product.Images.ExtraImages.forEach(image => {
+    product.Images.ExtraImages.forEach((image) => {
       images.push(image.Src);
     });
   }
 
-  buttons.forEach(button => {
+  buttons.forEach((button) => {
     button.addEventListener("click", () => {
       const offset = button.dataset.carouselButton === "next" ? 1 : -1;
       let newIndex = images.indexOf(displayImage.src) + offset;
       if (newIndex < 0) newIndex = images.length - 1;
       if (newIndex >= images.length) newIndex = 0;
       displayImage.src = images[newIndex];
-    })
-  })
+    });
+  });
   // ------------ Display Image and Carousel -----------------------------------
-  
+
   document.querySelector("#productImage").alt = product.Name;
   let percentageOff =
     ((product.SuggestedRetailPrice - product.FinalPrice) /
@@ -96,4 +96,3 @@ function addToCart() {
   setLocalStorage("so-cart", cartItems);
   superscript();
 }
-

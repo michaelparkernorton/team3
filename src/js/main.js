@@ -1,8 +1,10 @@
-import { loadHeaderFooter } from './utils.mjs';
+import { Func } from "./mjs/alert.mjs";
+import { loadHeaderFooter } from "./mjs/utils.mjs";
+
 // import { superscript } from "./superscript.mjs";
 
 loadHeaderFooter();
-
+Func();
 // const productCardTemplate = document.querySelector("[data-product-template]");
 // const productCardContainer = document.querySelector("[data-product-cards-container]");
 // const searchInput = document.querySelector("[data-search]");
@@ -44,9 +46,9 @@ loadHeaderFooter();
 //             if (product.Id === "989CG" || product.Id === "880RT") {
 //                 card.classList.add("hide");
 //             }
-            
+
 //             productCardContainer.append(card);
-//             return { brand: product.Brand.Name, name: product.NameWithoutBrand, Id: product.Id, element: card }            
+//             return { brand: product.Brand.Name, name: product.NameWithoutBrand, Id: product.Id, element: card }
 //         })
 //     })
 
