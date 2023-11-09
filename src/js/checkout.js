@@ -1,5 +1,5 @@
-import { loadHeaderFooter } from "./utils.mjs";
-import checkoutProcess from "./checkoutProcess.mjs";
+import { loadHeaderFooter } from "./mjs/utils.mjs";
+import checkoutProcess from "./mjs/checkoutProcess.mjs";
 
 loadHeaderFooter();
 
