@@ -95,4 +95,11 @@ function addToCart() {
   cartItems.push(product);
   setLocalStorage("so-cart", cartItems);
   superscript();
+  cartQuantity();
+}
+
+export function cartQuantity()
+{
+  const quant = document.getElementById("quantity").value
+  console.log("This is the quantity " + quant)
 }
