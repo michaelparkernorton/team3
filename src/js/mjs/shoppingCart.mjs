@@ -52,7 +52,7 @@ function cartItemTemplate(item) {
     <p class='cart-card__color'>${item.Colors[0].ColorName}</p>
     <p class='cart-card__quantity'>Quantity: ${item.Quantity}</p>
     <button type='button' class='cart-card__remove' data-id=''>Delete</button>
-    <p class='cart-card__price'>$${(item.FinalPrice.toFixed(2)*item.Quantity)}</p>
+    <p class='cart-card__price'>$${(item.FinalPrice.toFixed(2))}</p>
   </li>`;
 
   // adding an event listener to the 'Delete' button
