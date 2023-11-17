@@ -50,9 +50,9 @@ function cartItemTemplate(item) {
       <h2 class='card__name'>${item.Name}</h2>
     </a>
     <p class='cart-card__color'>${item.Colors[0].ColorName}</p>
-    <p class='cart-card__quantity'>qty: 1</p>
+    <p class='cart-card__quantity'>Quantity: ${item.Quantity}</p>
     <button type='button' class='cart-card__remove' data-id=''>Delete</button>
-    <p class='cart-card__price'>$${item.FinalPrice.toFixed(2)}</p>
+    <p class='cart-card__price'>$${(item.FinalPrice.toFixed(2))}</p>
   </li>`;
 
   // adding an event listener to the 'Delete' button
@@ -75,7 +75,7 @@ function renderCartContents() {
   let itemsInCart = cartItems.length;
   // for loop just adds all Final Prices together in cartItems
   for (let i = 0; i < itemsInCart; i++) {
-    const price = cartItems[i].FinalPrice;
+    const price = (cartItems[i].FinalPrice * cartItems[i].Quantity);
     subTotal += price;
   }
   //check if cartItems is an array before mapping

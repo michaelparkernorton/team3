@@ -11,6 +11,14 @@ export function superscript() {
   superscript.className = "superscript";
   const cartItems = getLocalStorage("so-cart") || [];
   if (cartItems.length > 0) {
+    //! I tried to get the superscript to change based on the quantity of
+    //! items, but was unable to.
+    // var test = 0;
+    // for(let i = 0; i < cartItems.length; i++)
+    // {
+          // test + cartItems[i].Quantity;
+    //   console.log(cartItems[i].Quantity)
+    // }
     superscript.innerText = cartItems.length;
     cart.append(superscript);
   } else {

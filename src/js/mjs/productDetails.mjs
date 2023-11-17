@@ -91,8 +91,16 @@ function select(element) {
 }
 
 function addToCart() {
+  product.Quantity = cartQuantity();
   const cartItems = getLocalStorage("so-cart") || [];
   cartItems.push(product);
   setLocalStorage("so-cart", cartItems);
   superscript();
+}
+
+export function cartQuantity()
+{
+  const quant = document.getElementById("quantity").value
+  return quant;
+  // console.log("This is the quantity " + quant)
 }

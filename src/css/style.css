@@ -118,14 +118,21 @@ button {
   font-size: var(--large-font);
   cursor: pointer;
   border-radius: 7px;
-  transition: 0.2s;
+  transition: .2s;
+  text-decoration: none;
 }
-button#addToCart:hover {
+a{
+  text-decoration: none;
+  color:black;
+}
+button#addToCart:hover, button#checkOutBtn:hover{
   background-color: rgb(67, 73, 22);
   box-shadow: 7px 7px 10px black;
+  text-decoration: none;
 }
-button#addToCart:active {
-  box-shadow: 0 0 0 black;
+button#addToCart:active, button#checkOutBtn:active{
+  box-shadow:0 0 0 black;
+  text-decoration: none;
 }
 
 .divider {
