@@ -311,3 +311,25 @@ footer {
   border-radius: 5px;
   font-weight: bold;
 }
+
+#welcomeBanner{
+  display: none;
+  background: #3498db;
+  color: #fff;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  text-align: center;
+}
+#bannerLink {
+  color: #fff;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: .2s;
+}
+#bannerLink:hover{
+  font-size: 3vh;
+}
+.incentive{
+  font-size: 1.5vh;
+}

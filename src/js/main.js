@@ -1,10 +1,12 @@
 import { Func } from "./mjs/alert.mjs";
 import { loadHeaderFooter } from "./mjs/utils.mjs";
+import { closeBanner } from "./banner.js";
 
 // import { superscript } from "./superscript.mjs";
 
 loadHeaderFooter();
 Func();
+closeBanner();
 // const productCardTemplate = document.querySelector("[data-product-template]");
 // const productCardContainer = document.querySelector("[data-product-cards-container]");
 // const searchInput = document.querySelector("[data-search]");
