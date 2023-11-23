@@ -2,6 +2,7 @@ import {
   getLocalStorage,
   setLocalStorage,
   renderListWithTemplate,
+  removeItem,
 } from './utils.mjs';
 
 export default function shoppingCart() {
@@ -18,17 +19,17 @@ export default function shoppingCart() {
   });
 }
 
-function removeItem(itemId) {
-  const cartItems = getLocalStorage('so-cart');
-  const itemIndex = cartItems.findIndex((item) => item.id === itemId);
+// function removeItem(itemId) {
+//   const cartItems = getLocalStorage('so-cart');
+//   const itemIndex = cartItems.findIndex((item) => item.id === itemId);
 
-  if (itemIndex !== -1) {
-    cartItemTemplate.splice(itemIndex, 1);
-    setLocalStorage('so-cart', cartItems);
-    const outputEl = document.querySelector('product-list');
-    renderListWithTemplate(cartItemTemplate, outputEl, cartItems);
-  }
-}
+//   if (itemIndex !== -1) {
+//     cartItemTemplate.splice(itemIndex, 1);
+//     setLocalStorage('so-cart', cartItems);
+//     const outputEl = document.querySelector('product-list');
+//     renderListWithTemplate(cartItemTemplate, outputEl, cartItems);
+//   }
+// }
 
 function cartItemTemplate(item) {
   let colorName = '';
@@ -51,21 +52,21 @@ function cartItemTemplate(item) {
     </a>
     <p class='cart-card__color'>${item.Colors[0].ColorName}</p>
     <p class='cart-card__quantity'>Quantity: ${item.Quantity}</p>
-    <button type='button' class='cart-card__remove' data-id=''>Delete</button>
+    <button type='button' className='cart-card__remove' id='dButton' data-id=${item.id}>Delete</button>
     <p class='cart-card__price'>$${(item.FinalPrice.toFixed(2))}</p>
   </li>`;
 
-  // adding an event listener to the 'Delete' button
-  // const deleteButton = document.createElement('button');
-  // deleteButton.type = 'button';
-  // deleteButton.classList.add('cart-card__remove');
-  // deleteButton.textContent = 'Delete';
+  let deleteButtons = document.querySelectorAll('.cart-card__remove');
+  deleteButtons.forEach(deleteButton => {
+    deleteButton.addEventListener('click', function() {
+      removeItem(this.getAttribute('data-id'));
+      this.parentNode.remove();
+    })
+  })
+  
 
-  // deleteButton.addEventListener('click', () => {
-  //  newItem.remove();
-  //  });
-  //  newItem.appendChild(deleteButton);
-  return newItem;
+  //  newItem.appendChild(deleteButtons);
+   return newItem;
 }
 
 function renderCartContents() {

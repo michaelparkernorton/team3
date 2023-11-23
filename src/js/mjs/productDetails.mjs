@@ -1,13 +1,13 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
-import { findProductById } from "./externalServices.mjs";
-import { superscript } from "./superscript.mjs";
-import { doc } from "prettier";
+import { getLocalStorage, setLocalStorage } from './utils.mjs';
+import { findProductById } from './externalServices.mjs';
+import { superscript } from './superscript.mjs';
+import { doc } from 'prettier';
 
 let product = {};
-const colorTemplate = document.querySelector("[color-template]");
-const colorsContainer = document.querySelector("[colors-container]");
-const buttons = document.querySelectorAll("[data-carousel-button]");
-let displayImage = document.querySelector("#productImage");
+const colorTemplate = document.querySelector('[color-template]');
+const colorsContainer = document.querySelector('[colors-container]');
+const buttons = document.querySelectorAll('[data-carousel-button]');
+let displayImage = document.querySelector('#productImage');
 let images = [];
 
 export default async function productDetails(productId) {
@@ -21,15 +21,15 @@ export default async function productDetails(productId) {
     const element = product.Colors[index];
     product.Colors[index].Selected = false;
   }
-  document.getElementById("addToCart").addEventListener("click", addToCart);
+  document.getElementById('addToCart').addEventListener('click', addToCart);
 }
 
 export function renderProductDetails() {
-  document.querySelector("#category-name").innerHTML = product.Category;
-  document.querySelector("#link").href =
-    "../product-list/index.html?category=" + product.Category;
-  document.querySelector("#productName").innerText = product.Brand.Name;
-  document.querySelector("#productNameWithoutBrand").innerText =
+  document.querySelector('#category-name').innerHTML = product.Category;
+  document.querySelector('#link').href =
+    '../product-list/index.html?category=' + product.Category;
+  document.querySelector('#productName').innerText = product.Brand.Name;
+  document.querySelector('#productNameWithoutBrand').innerText =
     product.NameWithoutBrand;
 
   // ------------ Display Image and Carousel -----------------------------------
@@ -38,7 +38,7 @@ export function renderProductDetails() {
 
   if (product.Images.ExtraImages != null) {
     buttons.forEach((button) => {
-      button.style.display = "inline";
+      button.style.display = 'inline';
     });
     product.Images.ExtraImages.forEach((image) => {
       images.push(image.Src);
@@ -46,8 +46,8 @@ export function renderProductDetails() {
   }
 
   buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const offset = button.dataset.carouselButton === "next" ? 1 : -1;
+    button.addEventListener('click', () => {
+      const offset = button.dataset.carouselButton === 'next' ? 1 : -1;
       let newIndex = images.indexOf(displayImage.src) + offset;
       if (newIndex < 0) newIndex = images.length - 1;
       if (newIndex >= images.length) newIndex = 0;
@@ -56,34 +56,34 @@ export function renderProductDetails() {
   });
   // ------------ Display Image and Carousel -----------------------------------
 
-  document.querySelector("#productImage").alt = product.Name;
+  document.querySelector('#productImage').alt = product.Name;
   let percentageOff =
     ((product.SuggestedRetailPrice - product.FinalPrice) /
       product.SuggestedRetailPrice) *
     100;
-  document.querySelector("#productDiscount").innerText =
-    "-" + percentageOff.toFixed(0) + "%";
-  document.querySelector("#productFinalPrice").innerText =
-    "$" + product.FinalPrice;
-  document.querySelector("#productSuggestedRetailPrice").innerText =
-    "$" + product.SuggestedRetailPrice.toFixed(2);
+  document.querySelector('#productDiscount').innerText =
+    '-' + percentageOff.toFixed(0) + '%';
+  document.querySelector('#productFinalPrice').innerText =
+    '$' + product.FinalPrice;
+  document.querySelector('#productSuggestedRetailPrice').innerText =
+    '$' + product.SuggestedRetailPrice.toFixed(2);
   const colors = product.Colors.map((color) => color.ColorChipImageSrc);
   colors.forEach((color, index) => {
     const card = colorTemplate.content.cloneNode(true).children[0];
     card.src = color;
     card.id = index;
-    card.addEventListener("click", function () {
+    card.addEventListener('click', function () {
       select(card);
     });
     colorsContainer.append(card);
   });
-  document.querySelector("#productDescriptionHtmlSimple").innerHTML =
+  document.querySelector('#productDescriptionHtmlSimple').innerHTML =
     product.DescriptionHtmlSimple;
 }
 
 function select(element) {
   let pictureSwitch = product.Colors[element.id].ColorPreviewImageSrc;
-  document.querySelector("#productImage").src = pictureSwitch;
+  document.querySelector('#productImage').src = pictureSwitch;
   product.Colors.forEach((element) => {
     element.Selected = false;
   });
@@ -92,15 +92,15 @@ function select(element) {
 
 function addToCart() {
   product.Quantity = cartQuantity();
-  const cartItems = getLocalStorage("so-cart") || [];
+  const cartItems = getLocalStorage('so-cart') || [];
   cartItems.push(product);
-  setLocalStorage("so-cart", cartItems);
+  setLocalStorage('so-cart', cartItems);
   superscript();
 }
 
 export function cartQuantity()
 {
-  const quant = document.getElementById("quantity").value
+  const quant = document.getElementById('quantity').value
   return quant;
-  // console.log("This is the quantity " + quant)
+  // console.log('This is the quantity ' + quant)
 }

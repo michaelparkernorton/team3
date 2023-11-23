@@ -82,38 +82,38 @@ export async function loadHeaderFooter() {
   renderWithTemplate(footerTemplateFn, footerEl);
 }
 
-// export async function removeItem(productId){
-//   try {
-//   const cartIndex = shoppingCart.findIndex((item) => item.id === productId);
-//   if (cartIndex !== -1){
-//     cartIndex.splice(cartIndex, 1);
-//     return { success: true, message: "Item removed from the cart"};
-//   } else{
-//     return { success: false, message: "Item not found in the cart"};
-//   }
-//   }
-//   catch (error) {
-//     return {success: false, message: "An error occurred while attempting to remove item."}
-//   }
-// }
+export async function removeItem(productId){
+  try {
+  const cartIndex = shoppingCart.findIndex((item) => item.id === productId);
+  if (cartIndex !== -1){
+    cartIndex.splice(cartIndex, 1);
+    return { success: true, message: 'Item removed from the cart'};
+  } else{
+    return { success: false, message: 'Item not found in the cart'};
+  }
+  }
+  catch (error) {
+    return {success: false, message: 'An error occurred while attempting to remove item.'}
+  }
+}
 
 export function alertMessage(message, scroll = true, duration = 3000)
 {
-  const alert = document.createElement("div");
-  alert.classList.add("alert");
+  const alert = document.createElement('div');
+  alert.classList.add('alert');
   alert.innerHTML = `<p>${message}<p><span>X<span>`;
 
   alert.addEventListener('click', function(e){
-    if (e.target.tagName == "SPAN"){
+    if (e.target.tagName == 'SPAN'){
       main.removeChild(this);
     }
   });
-  const main = document.querySelector("main");
+  const main = document.querySelector('main');
   main.prepend(alert);
   if (scroll) window.scrollTo(0,0);
 }
 
 export function removeAllAlerts() {
-  const alerts = document.querySelectorAll(".alert");
-  alerts.forEach((alert) => document.querySelector("main").removeChild(alert));
+  const alerts = document.querySelectorAll('.alert');
+  alerts.forEach((alert) => document.querySelector('main').removeChild(alert));
 }
